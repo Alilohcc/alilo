@@ -1,0 +1,38 @@
+Enabled dulu User Administrator melalui console yang ada pada panel VPS Windows, Jika posisi Administrator disabled.
+
+2. Create user-user lainnya, misalnya Kita membuat 5 user dengan akses user biasa.
+
+3. Enabled RDP nya di pengaturan.
+
+4. Izinkan akses untuk para user yang sudah dicreate di menu "Allow Remote Connection from this Computer".
+
+5. - Klik tombol "Wind Logo + R" ketik "gpedit.msc" kemudian enter.
+
+    - Pergi ke >> Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections.
+
+   - Set >> Restrict Remote Desktop Services user to a single Remote Desktop Services session ke Disabled.
+
+   - Dobel klik >> Limit number of connections and set the RD Maximum Connections izinkan ke 999999.
+
+6. Buka file "Registry Editor" >> HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\fSingleSessionPerUser (ubah value = 0).
+
+7. Restart RDP nya.
+
+8. Buka menu "Services" run as Administrator, kemudian Disabled file "TermService" bukan distop, kemudian klik Apply & OK.
+
+9. - Buka menu "C:\Windows\System32\" cari file "termsrv.dll" buka propertinya, klik tab security >> Advanced dan ubah Owner nya yang tadinya "TrustedInstaller" menjadi "Administrator" lalu klik Apply & OK.
+
+   - Lanjut edit permissionnya untuk Administrators, Administrator & SYSTEM ke Full Access, lalu klik Apply & OK.
+
+Setelah semua setup/konfigurasi diatas selesai, silahkan dicoba untuk login multi usernya.
+
+Ohya trik ini tidak sepenuhnya berjalan, jika posisi windows update kita berjalan (Update secara Otomatis), Kita harus mendisabled update nya.
+
+Bisa dilakukan secara manual melalui Registry Editor atau dilakukan secara otomatis menggunakan tools "win_update_stop_setup", bisa di Download disini.
+
+Atau jika Kita ingin membiarkan windows update berjalan secara otomatis, maka Kita harus melakukan manual update untuk meng-enabled kembali login multi usernya.
+
+Caranya lakukan konfigurasi ulang pada poin diatas.
+
+Jika ada pertanyaan dan butuh bantuan lebih lanjut silahkan kontak Kami di https://klien.linggahosting.com/contact.php
+
